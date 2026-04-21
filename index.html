@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Availability Form</title>
+    <title>AXL AMAZING XPRESS LTD - Service Form</title>
     <style>
         * {
             margin: 0;
@@ -23,9 +23,35 @@
             margin: 0 auto;
         }
 
+        .company-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 20px 20px 0 0;
+            margin-bottom: 0;
+        }
+
+        .company-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .company-logo span {
+            color: #f39c12;
+        }
+
+        .company-tagline {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
         .card {
             background: #ffffff;
-            border-radius: 20px;
+            border-radius: 0 0 20px 20px;
             box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
             padding: 40px;
             margin-bottom: 20px;
@@ -39,7 +65,7 @@
         }
 
         .form-title {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #1a1a2e;
             margin-bottom: 8px;
@@ -163,7 +189,7 @@
         }
 
         .hidden-fields.show {
-            max-height: 600px;
+            max-height: 800px;
             padding-top: 20px;
             margin-top: 16px;
             border-top: 1px dashed #ccc;
@@ -207,13 +233,46 @@
             box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.15);
         }
 
-        .field-select {
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-            padding-right: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            border-color: #25d366;
+            background: #f0fff4;
+        }
+
+        .checkbox-item.checked {
+            border-color: #25d366;
+            background: linear-gradient(135deg, #25d36620, #128c7e20);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #25d366;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
         }
 
         .city-tag {
@@ -330,11 +389,17 @@
             .card {
                 padding: 20px;
             }
+            .company-logo {
+                font-size: 1.8rem;
+            }
             .form-title {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
             .field-row {
                 grid-template-columns: 1fr;
+            }
+            .checkbox-grid {
+                grid-template-columns: 1fr 1fr;
             }
             .toggle-group {
                 flex-direction: column;
@@ -350,9 +415,15 @@
 </head>
 <body>
     <div class="container">
+        <!-- Company Header -->
+        <div class="company-header">
+            <div class="company-logo">AXL <span>AMAZING</span> XPRESS LTD</div>
+            <div class="company-tagline">PROFESSIONAL TRUCK & FLEET SERVICES</div>
+        </div>
+
         <div class="card">
             <div class="form-header">
-                <h1 class="form-title">🚛 Service Availability Form</h1>
+                <h1 class="form-title">📋 Service Availability Registration</h1>
                 <p class="form-subtitle">Register your services across USA & Canada</p>
                 <div class="whatsapp-badge">
                     <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
@@ -373,8 +444,8 @@
                             <input type="text" id="fullName" class="field-input" placeholder="John Smith" required>
                         </div>
                         <div class="field-group">
-                            <label class="field-label">Business Name</label>
-                            <input type="text" id="businessName" class="field-input" placeholder="ABC Truck Services">
+                            <label class="field-label">Company Name</label>
+                            <input type="text" id="companyName" class="field-input" placeholder="Your Company Name">
                         </div>
                     </div>
                     <div class="field-row">
@@ -413,19 +484,37 @@
                                 <label class="field-label">Number of Trucks</label>
                                 <input type="number" id="towCount" class="field-input" min="1" placeholder="e.g., 5">
                             </div>
-                            <div class="field-group">
-                                <label class="field-label">Type</label>
-                                <select id="towType" class="field-select">
-                                    <option value="">Select type</option>
-                                    <option value="Flatbed">Flatbed</option>
-                                    <option value="Wheel Lift">Wheel Lift</option>
-                                    <option value="Heavy Duty">Heavy Duty</option>
-                                    <option value="Integrated">Integrated</option>
-                                    <option value="All Types">All Types</option>
-                                </select>
-                            </div>
                         </div>
                         <div class="field-group">
+                            <label class="field-label">Select Truck Types (Select all that apply)</label>
+                            <div class="checkbox-grid">
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="tow-flatbed" value="Flatbed">
+                                    <label for="tow-flatbed">🚛 Flatbed</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="tow-wheel" value="Wheel Lift">
+                                    <label for="tow-wheel">🔄 Wheel Lift</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="tow-heavy" value="Heavy Duty">
+                                    <label for="tow-heavy">🚛 Heavy Duty</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="tow-integrated" value="Integrated">
+                                    <label for="tow-integrated">⚙️ Integrated</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="tow-hook" value="Hook Lift">
+                                    <label for="tow-hook">🪝 Hook Lift</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="tow-slide" value="Slide Back">
+                                    <label for="tow-slide">📐 Slide Back</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field-group" style="margin-top: 16px;">
                             <label class="field-label">Cities with Tow Truck Service</label>
                             <div id="tow-cities" class="city-tags" style="margin-bottom: 10px;"></div>
                             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
@@ -572,12 +661,12 @@
                     </div>
                 </div>
 
-                <!-- Section 6: Fleet Mechanic -->
+                <!-- Section 6: Fleet Manager -->
                 <div class="section" id="section-fleet">
                     <div class="section-header">
                         <div class="section-title">
-                            <span class="section-icon">🔩</span>
-                            Fleet Management Mechanic
+                            <span class="section-icon">👔</span>
+                            Fleet Manager
                         </div>
                         <div class="toggle-group">
                             <button type="button" class="toggle-btn yes" onclick="toggleService('fleet', true)">Yes</button>
@@ -601,6 +690,77 @@
                             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                                 <input type="text" id="fleetCityInput" class="field-input" style="flex: 1; min-width: 150px;" placeholder="Enter city name">
                                 <button type="button" class="add-city-btn" onclick="addCity('fleet')">+ Add City</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 7: Truck Parts -->
+                <div class="section" id="section-parts">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <span class="section-icon">🔩</span>
+                            Truck Parts
+                        </div>
+                        <div class="toggle-group">
+                            <button type="button" class="toggle-btn yes" onclick="toggleService('parts', true)">Yes</button>
+                            <button type="button" class="toggle-btn no" onclick="toggleService('parts', false)">No</button>
+                        </div>
+                    </div>
+                    <div id="parts-fields" class="hidden-fields">
+                        <div class="field-row">
+                            <div class="field-group">
+                                <label class="field-label">Number of Locations</label>
+                                <input type="number" id="partsCount" class="field-input" min="1" placeholder="e.g., 3">
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label">Parts Categories</label>
+                                <input type="text" id="partsServices" class="field-input" placeholder="e.g., Engine, Brakes, Electrical">
+                            </div>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Select Part Types Available (Select all that apply)</label>
+                            <div class="checkbox-grid">
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="parts-engine" value="Engine Parts">
+                                    <label for="parts-engine">⚙️ Engine Parts</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="parts-brakes" value="Brakes">
+                                    <label for="parts-brakes">🛑 Brakes</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="parts-electrical" value="Electrical">
+                                    <label for="parts-electrical">⚡ Electrical</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="parts-suspension" value="Suspension">
+                                    <label for="parts-suspension">🔄 Suspension</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="parts-transmission" value="Transmission">
+                                    <label for="parts-transmission">⚙️ Transmission</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="parts-exhaust" value="Exhaust">
+                                    <label for="parts-exhaust">💨 Exhaust</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="parts-cooling" value="Cooling">
+                                    <label for="parts-cooling">❄️ Cooling</label>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="parts-filters" value="Filters">
+                                    <label for="parts-filters">🔧 Filters</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field-group" style="margin-top: 16px;">
+                            <label class="field-label">Cities with Truck Parts</label>
+                            <div id="parts-cities" class="city-tags" style="margin-bottom: 10px;"></div>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <input type="text" id="partsCityInput" class="field-input" style="flex: 1; min-width: 150px;" placeholder="Enter city name">
+                                <button type="button" class="add-city-btn" onclick="addCity('parts')">+ Add City</button>
                             </div>
                         </div>
                     </div>
@@ -650,7 +810,8 @@
             machine: [],
             winding: [],
             body: [],
-            fleet: []
+            fleet: [],
+            parts: []
         };
 
         // WhatsApp number
@@ -676,6 +837,22 @@
                 document.getElementById(service + '-cities').innerHTML = '';
                 updateSummary();
             }
+        }
+
+        function toggleCheckbox(element) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('checked', checkbox.checked);
+        }
+
+        function getSelectedTruckTypes() {
+            const checkboxes = document.querySelectorAll('#tow-fields input[type="checkbox"]:checked');
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
+        function getSelectedPartTypes() {
+            const checkboxes = document.querySelectorAll('#parts-fields input[type="checkbox"]:checked');
+            return Array.from(checkboxes).map(cb => cb.value);
         }
 
         function addCity(service) {
@@ -713,7 +890,8 @@
                 { key: 'machine', name: 'Repair Shop', icon: '🔧' },
                 { key: 'winding', name: 'Winding Shop', icon: '⚡' },
                 { key: 'body', name: 'Body Shop', icon: '🎨' },
-                { key: 'fleet', name: 'Fleet Mechanic', icon: '🔩' }
+                { key: 'fleet', name: 'Fleet Manager', icon: '👔' },
+                { key: 'parts', name: 'Truck Parts', icon: '🔩' }
             ];
 
             let hasServices = false;
@@ -739,51 +917,80 @@
             
             // Get form values
             const fullName = document.getElementById('fullName').value.trim();
-            const businessName = document.getElementById('businessName').value.trim();
+            const companyName = document.getElementById('companyName').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const email = document.getElementById('email').value.trim();
             const operatingHours = document.getElementById('operatingHours').value.trim();
             const emergencyService = document.getElementById('emergencyService').value;
 
+            // Get selected types
+            const truckTypes = getSelectedTruckTypes();
+            const partTypes = getSelectedPartTypes();
+            
             // Build message
-            let message = `📋 *SERVICE AVAILABILITY FORM*\n`;
+            let message = `━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `🛡️ *AXL AMAZING XPRESS LTD*\n`;
+            message += `📋 *SERVICE REGISTRATION*\n`;
             message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
             
             message += `👤 *CONTACT INFO*\n`;
             message += `Name: ${fullName || 'N/A'}\n`;
-            if (businessName) message += `Business: ${businessName}\n`;
+            if (companyName) message += `Company: ${companyName}\n`;
             message += `Phone: ${phone || 'N/A'}\n`;
             if (email) message += `Email: ${email}\n`;
             message += `\n`;
 
-            // Services
+            // Tow Truck with types
+            const towYesBtn = document.querySelector('#section-tow .toggle-btn.yes');
+            if (towYesBtn.classList.contains('active')) {
+                const towCount = document.getElementById('towCount').value;
+                const towCities = serviceCities.tow.join(', ') || 'N/A';
+                
+                message += `🚛 *TOW TRUCK*\n`;
+                if (towCount) message += `• Trucks: ${towCount}\n`;
+                if (truckTypes.length > 0) {
+                    message += `• Types: ${truckTypes.join(', ')}\n`;
+                }
+                message += `• Cities: ${towCities}\n\n`;
+            }
+
+            // Other services
             const serviceDefs = [
-                { key: 'tow', name: '🚛 TOW TRUCK', countId: 'towCount', typeId: 'towType' },
                 { key: 'tire', name: '🛞 TIRE SHOP', countId: 'tireCount', typeId: 'tireServices' },
                 { key: 'machine', name: '🔧 REPAIR SHOP', countId: 'machineCount', typeId: 'machineServices' },
                 { key: 'winding', name: '⚡ WINDING SHOP', countId: 'windingCount', typeId: 'windingServices' },
                 { key: 'body', name: '🎨 BODY SHOP', countId: 'bodyCount', typeId: 'bodyServices' },
-                { key: 'fleet', name: '🔩 FLEET MECHANIC', countId: 'fleetExperience', typeId: 'fleetWorkType' }
+                { key: 'fleet', name: '👔 FLEET MANAGER', countId: 'fleetExperience', typeId: 'fleetWorkType' }
             ];
 
-            let hasService = false;
             serviceDefs.forEach(s => {
                 const yesBtn = document.querySelector(`#section-${s.key} .toggle-btn.yes`);
                 if (yesBtn.classList.contains('active')) {
-                    hasService = true;
                     const count = document.getElementById(s.countId).value;
                     const type = document.getElementById(s.typeId).value;
                     const cities = serviceCities[s.key].join(', ') || 'N/A';
                     
                     message += `${s.name}\n`;
-                    if (count) message += `• Qty: ${count}\n`;
+                    if (count) message += `• Details: ${count}\n`;
                     if (type) message += `• ${type}\n`;
                     message += `• Cities: ${cities}\n\n`;
                 }
             });
 
-            if (!hasService) {
-                message += `No services selected\n\n`;
+            // Truck Parts with types
+            const partsYesBtn = document.querySelector('#section-parts .toggle-btn.yes');
+            if (partsYesBtn.classList.contains('active')) {
+                const partsCount = document.getElementById('partsCount').value;
+                const partsCategories = document.getElementById('partsServices').value;
+                const partsCities = serviceCities.parts.join(', ') || 'N/A';
+                
+                message += `🔩 *TRUCK PARTS*\n`;
+                if (partsCount) message += `• Locations: ${partsCount}\n`;
+                if (partsCategories) message += `• ${partsCategories}\n`;
+                if (partTypes.length > 0) {
+                    message += `• Types: ${partTypes.join(', ')}\n`;
+                }
+                message += `• Cities: ${partsCities}\n\n`;
             }
 
             // Additional info
@@ -792,7 +999,7 @@
             message += `Emergency: ${emergencyService || 'N/A'}\n`;
             
             message += `\n━━━━━━━━━━━━━━━━━━━━\n`;
-            message += `Sent from Service Form`;
+            message += `Sent via AXL Form`;
 
             // Encode and open WhatsApp
             const encodedMessage = encodeURIComponent(message);
